@@ -1,0 +1,20 @@
+﻿/*Phan trang*/
+.top_brand_left {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.trang1 {
+    display: block;
+}
+
+.paginationJS {
+    text-align: center;
+}
+
+.paginationJS a {
+    border: 1px solid #0094ff;
+    border-radius: 3px;
+    padding: 8px 12px;
+}
+/*End Phan Trang*/

@@ -1,0 +1,160 @@
+﻿
+@model AppleStoreAL.CartModel
+
+
+@if (Model == null || Model.Items.Count == 0)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert" style="position:fixed;right:0">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning,Cart Empty!</strong> Please select the product to buy.
+    </div>
+}
+else
+{
+    <div class="w3l_banner_nav_right">
+        <div class="privacy about">
+            <h3>Chec<span>kout</span></h3>
+
+            <div class="checkout-right">
+                <h4>Your shopping cart contains: <span>@Model.Items.Count Product(s)</span></h4>
+                <table class="timetable_sub">
+                    <thead>
+                        <tr>
+                            <th>SL No.</th>
+                            <th>Product</th>
+                            <th>Quality</th>
+                            <th>Product Name</th>
+                            <th>Item Price</th>
+                            <th>Total Price</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.Items.Count; i++)
+                        {
+                            var item = Model.Items[i];
+                            <tr class="rem1">
+                                <td class="invert">@(i + 1)</td>
+                                <td class="invert-image">
+                                    <a href="single.html">
+                                        <img src="~/Areas/Admin/Content/products/@item.iImage" alt=" " class="img-responsive" style="width:100px;">
+                                    </a>
+                                </td>
+                                <td class="invert">
+                                    <div class="quantity">
+                                        <div class="quantity-select">
+                                            <div class="entry value-minus decrement-item" data-id="@item.iId">&nbsp;</div>
+                                            <div class="entry value"><span>@item.iSoLuong</span></div>
+                                            <div class="entry value-plus active increment-item" data-id="@item.iId">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="invert">@item.iName</td>
+                                <td class="invert">@item.iPrice</td>
+                                <td class="invert">@item.iTotalPrice</td>
+                                <td class="invert">
+                                    <div class="rem">
+                                        <a href="#" class="close1 item-remove" data-id="@item.iId"> </a>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="checkout-left">
+                <div class="col-md-4 checkout-left-basket">
+                    <h4>Continue to basket</h4>
+                    <ul>
+                        @foreach (var item in Model.Items)
+                        {
+                            <li>@item.iName <span>@item.iTotalPrice </span></li>
+                        }
+                        @*<li>Total Service Charges <i>-</i> <span>$15.00</span></li>*@
+                        <li>Total <span>@Model.CartTotal</span></li>
+                    </ul>
+                </div>
+                <div class="col-md-8 address_form_agile">
+                    <h4>Add a new Details</h4>
+                    @using (Html.BeginForm("CheckOut", "ShoppingCart", FormMethod.Post))
+                    {
+                        <div class="information-wrapper">
+                            <div class="first-row form-group">
+                                <div class="controls">
+                                    <label class="control-label">ID Khach hang: </label>
+                                    <input class="billing-address-name form-control" type="text" name="idCus" placeholder="Full name">
+                                </div>
+                                <div class="controls">
+                                    <label class="control-label">Full name: </label>
+                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
+                                </div>
+                                <div class="w3_agileits_card_number_grids">
+                                    <div class="w3_agileits_card_number_grid_left">
+                                        <div class="controls">
+                                            <label class="control-label">Mobile number:</label>
+                                            <input class="form-control" type="text" name="phone" placeholder="Mobile number">
+                                        </div>
+                                    </div>
+                                    <div class="w3_agileits_card_number_grid_right">
+                                        <div class="controls">
+                                            <label class="control-label">Address </label>
+                                            <input class="form-control" type="text" name="address" placeholder="Landmark">
+                                        </div>
+                                    </div>
+                                    <div class="clear"> </div>
+                                </div>
+                                <div class="controls">
+                                    <label class="control-label">Town/City: </label>
+                                    <input class="form-control" type="text" placeholder="Town/City">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" value="CheckOut" />
+                    }
+                </div>
+
+                <div class="clearfix"> </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            var $cartDetails = $('#cart-details');
+            var $miniCart = $('#miniCart');
+
+            var removeItem$ = (id) => Promise.resolve($.post('@Url.Action("RemoveFromCart", "ShoppingCart")', { id, inCart: true }));
+            var miniCart$ = () => Promise.resolve($.get('@Url.Action("MiniCart", "ShoppingCart")'));
+            var decrementQuantity$ = (id) => Promise.resolve($.post('@Url.Action("DecrementQuantityForCartItem", "ShoppingCart")', { id }));
+            var incrementQuantity$ = (id) => Promise.resolve($.post('@Url.Action("IncrementQuantityForCartItem", "ShoppingCart")', { id }));
+
+            async function updateHtml(action$) {
+                var cartDetail = await action$;
+                $cartDetails.html(cartDetail);
+
+                var miniCart = await miniCart$();
+                $miniCart.html(miniCart);
+            }
+
+            $('.decrement-item').click(function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                updateHtml(decrementQuantity$(id));
+            });
+
+            $('.increment-item').click(function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                updateHtml(incrementQuantity$(id));
+            });
+
+            $('.item-remove').click(function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                updateHtml(removeItem$(id));
+            });
+        });
+    </script>
+}

@@ -1,0 +1,49 @@
+﻿
+@model AppleStoreAL.CartModel
+@if (Model != null && Model.Items.Count > 0)
+{
+    <div class="panel panel-default" style="position: absolute">
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <table class="table">
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <a class="minicart-name" href="@Url.Action("Detailes","Home",new { id=item.iId })">
+                                        @item.iName
+                                    </a>
+                                </td>
+                                <td>
+                                    @item.iSoLuong
+                                </td>
+                                <td>
+                                    @item.iTotalPrice
+                                </td>
+                                <td>
+                                    <a href="#" class="cart-item-remove" data-id="@item.iId">X</a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </li>
+            </ul>
+            <div class="minicart-footer">
+                <div class="minicart-subtotal">
+                    Subtotal: @Model.CartTotal
+                </div>
+                <div>
+                    <a href="@Url.Action("Index", "ShoppingCart")">View Cart Detalis</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning alert-dismissible" role="alert" style="position:fixed">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning,Cart Empty!</strong> Please select the product to buy.
+    </div>
+}

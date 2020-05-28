@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Searchs";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@model IEnumerable<AppleStore.Model.SanPham>
+@{
+    int iDem = 0;
+    int iTrang = 1;
+    int iCountItemOfPage = 8;
+}
+
+<div class="top-brands" style="padding-top:1em !important">
+    <div class="container">
+        <div class="agile_top_brands_grids">
+            @foreach (var sp in Model)
+            {
+                if (iDem % iCountItemOfPage == 0 && iDem != 0)
+                {
+                    iTrang++;
+                }
+                <div class="@Url.Content("col-md-3 top_brand_left trang"+iTrang.ToString())">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+                            <div class="tag"><img src="~/Content/images/tag.png" alt=" " class="img-responsive" /></div>
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="@Url.Action("Detailes","Home", new { id=sp.MaSanPham })"><img title=" " alt=" " src="~/Areas/Admin/Content/products/@sp.HinhMinhHoa" class="img-responsive" style="height:180px" /></a>
+                                            <p>@sp.TenSanPham</p>
+                                            <h4>@sp.DonGia <span>$10.00</span></h4>
+                                        </div>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="checkout.html" method="post">
+                                                <fieldset>
+                                                    <input type="hidden" name="cmd" value="_cart" />
+                                                    <input type="hidden" name="add" value="1" />
+                                                    <input type="hidden" name="business" value=" " />
+                                                    <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
+                                                    <input type="hidden" name="amount" value="7.99" />
+                                                    <input type="hidden" name="discount_amount" value="1.00" />
+                                                    <input type="hidden" name="currency_code" value="USD" />
+                                                    <input type="hidden" name="return" value=" " />
+                                                    <input type="hidden" name="cancel_return" value=" " />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button" />
+                                                </fieldset>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                iDem++;
+            }
+            <div class="clearfix"> </div>
+        </div>
+        <div class="paginationJS">
+            @for (var i = 1; i <= iTrang; i++)
+            {
+                if (iTrang != 1) //Neu so trang = 1 thi khong xuat ra gi
+                {
+                    <a href="#" class="btnTrang" data-sotrang="@Url.Content("trang"+i)">@i</a>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .top_brand_left {
+        display: none;
+        margin-bottom: 20px;
+    }
+
+    .trang1 {
+        display: block;
+    }
+
+    .paginationJS {
+        text-align: center;
+    }
+
+        .paginationJS a {
+            border: 1px solid #0094ff;
+            border-radius: 3px;
+            padding: 8px 12px;
+        }
+</style>
+
+<script>
+    $(function () {
+        $('.btnTrang').click(function () {
+            $(".top_brand_left").hide();
+            var pageCount = $(this).attr("data-sotrang");
+            $("." + pageCount).show();
+        });
+    })
+</script>
+

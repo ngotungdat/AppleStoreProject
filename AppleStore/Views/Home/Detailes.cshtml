@@ -1,0 +1,49 @@
+﻿@model  IEnumerable<AppleStore.Model.SanPham>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+    <div class="w3l_banner_nav_right">
+        <div class="agileinfo_single">
+            @foreach (var sp in Model)
+            {
+                <h5>@sp.TenSanPham</h5>
+                <div class="col-md-4 agileinfo_single_left">
+                    <img id="example" src="~/Areas/Admin/Content/products/@sp.HinhMinhHoa" alt=" " class="img-responsive" />
+                </div>
+                <div class="col-md-8 agileinfo_single_right">
+                    <div class="rating1">
+                        <span class="starRating">
+                            <input id="rating5" type="radio" name="rating" value="5">
+                            <label for="rating5">5</label>
+                            <input id="rating4" type="radio" name="rating" value="4">
+                            <label for="rating4">4</label>
+                            <input id="rating3" type="radio" name="rating" value="3" checked>
+                            <label for="rating3">3</label>
+                            <input id="rating2" type="radio" name="rating" value="2">
+                            <label for="rating2">2</label>
+                            <input id="rating1" type="radio" name="rating" value="1">
+                            <label for="rating1">1</label>
+                        </span>
+                    </div>
+                    <div class="w3agile_description">
+                        <h4>Mô tả :</h4>
+                        <p>
+                            @sp.MoTa
+                        </p>
+                    </div>
+                    <div class="snipcart-item block">
+                        <div class="snipcart-thumb agileinfo_single_right_snipcart">
+                            <h4>$@sp.DonGia <span>$25.00</span></h4>
+                        </div>
+                        <div class="snipcart-details top_brand_home_details" style="width:100%;text-align:left">
+                            <button class="button addToCart" data-id="@(sp.MaSanPham)" style="width:20%">Mua hàng</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+
