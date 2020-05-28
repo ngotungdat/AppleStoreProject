@@ -4841,6 +4841,12 @@
     <Content Include="Views\ShoppingCart\CartDetails.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Success.cshtml" />
+    <Content Include="Views\Shared\_Navigation_Left.cshtml" />
+    <Content Include="Views\Shared\_Logo_Products.cshtml" />
+    <Content Include="Views\Shared\_Navigation_Right.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_NewsLetter.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
