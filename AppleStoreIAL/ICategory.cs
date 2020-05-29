@@ -9,6 +9,8 @@ namespace AppleStoreIAL
 {
     public interface ICategory
     {
+        List<TheLoai> GetAllCategory();
+        List<SanPham> GetProduct();
         IEnumerable<SanPham> GetAllByCategoryId(string id);
         IEnumerable<SanPham> SortByDonGia(string sortOrder);
     }

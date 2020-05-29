@@ -58,18 +58,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- header -->
     @RenderPage("_Header.cshtml")
     <div class="logo_products">
-        @RenderPage("_Logo_Products.cshtml")
+        @{ Html.RenderAction("GetCategory", "Category");}
     </div>
     <!-- //header -->
     <!-- banner -->
     <div class="banner">
         <!--Menu-->
         <div class="w3l_banner_nav_left">
-            @RenderPage("_Navigation_Left.cshtml")
+            @{ Html.RenderAction("GetProductMenuLeft", "Category");}
         </div>
         <!--End Menu-->
         <div class="w3l_banner_nav_right">
-            @RenderPage("_Navigation_Right.cshtml")
+            @{ Html.RenderAction("Slider", "Category");}
         </div>
         <div class="clearfix"></div>
     </div>

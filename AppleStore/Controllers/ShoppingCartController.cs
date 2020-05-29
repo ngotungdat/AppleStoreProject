@@ -163,17 +163,24 @@ namespace AppleStore.Controllers
             try
             {
                 var cart = Session[CartName] as List<GioHang>;
-                foreach (var item in cart)
+                if (cart == null)
                 {
-                    var chitiet = new ChiTietDatHang();
-                    chitiet.MaSanPham = item.iId;
-                    chitiet.NgayDatHang = DateTime.Now;
-                    chitiet.DonGia = item.iPrice;
-                    chitiet.SoLuong = item.iSoLuong;
-                    appleStoreDbContext.ChiTietDatHangs.Add(chitiet);
-                    appleStoreDbContext.SaveChanges();
+                    return Content("Cart Empty!");
                 }
-                return RedirectToAction("Success", "ShoppingCart");
+                else
+                {
+                    foreach (var item in cart)
+                    {
+                        var chitiet = new ChiTietDatHang();
+                        chitiet.MaSanPham = item.iId;
+                        chitiet.NgayDatHang = DateTime.Now;
+                        chitiet.DonGia = item.iPrice;
+                        chitiet.SoLuong = item.iSoLuong;
+                        appleStoreDbContext.ChiTietDatHangs.Add(chitiet);
+                        appleStoreDbContext.SaveChanges();
+                    }
+                    return RedirectToAction("Success", "ShoppingCart");
+                }
             }
             catch
             {

@@ -16,6 +16,11 @@ namespace AppleStore.Controllers
         {
             _iCategory = icategory;
         }
+        public ActionResult GetAllCategorys()
+        {
+            ViewBag.allcategory = _iCategory.GetAllCategory();
+            return View();
+        }
         public ActionResult GetByCategoryId(string categoryId)
         {
             return View(_iCategory.GetAllByCategoryId(categoryId));
@@ -23,6 +28,20 @@ namespace AppleStore.Controllers
         public ActionResult SortingByDonGia(string sortOrder)
         {
             return View(_iCategory.SortByDonGia(sortOrder));
+        }
+        public PartialViewResult GetCategory()
+        {
+            var model = _iCategory.GetAllCategory();
+            return PartialView(model);
+        }
+        public PartialViewResult GetProductMenuLeft()
+        {
+            var model = _iCategory.GetProduct();
+            return PartialView(model);
+        }
+        public PartialViewResult Slider()
+        {
+            return PartialView();
         }
     }
 }

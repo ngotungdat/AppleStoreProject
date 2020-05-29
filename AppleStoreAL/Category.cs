@@ -23,6 +23,18 @@ namespace AppleStoreAL
             return products;
         }
 
+        public List<TheLoai> GetAllCategory()
+        {
+            var queryCat = from cat in objAppleStoreDbContext.TheLoais select cat;
+            return queryCat.ToList();
+        }
+
+        public List<SanPham> GetProduct()
+        {
+            var queryProd = from prod in objAppleStoreDbContext.SanPhams select prod;
+            return queryProd.OrderByDescending(x => x.NgayCapNhat).Take(8).ToList();
+        }
+
         public IEnumerable<SanPham> SortByDonGia(string sortOrder)
         {
             var listProd = from obj in objAppleStoreDbContext.SanPhams select obj;

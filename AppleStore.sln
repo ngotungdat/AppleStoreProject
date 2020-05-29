@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleStoreIAL", "AppleStore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleStoreAL", "AppleStoreAL\AppleStoreAL.csproj", "{980C1A1B-0033-4F90-B864-BB1D6B807848}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleStoreTEST", "AppleStoreTEST\AppleStoreTEST.csproj", "{5387507D-F0E1-446B-B247-0F3FC2067598}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleStoreAPI", "AppleStoreAPI\AppleStoreAPI.csproj", "{4B513701-5317-4DBC-9FBF-FBE001A8BB3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{980C1A1B-0033-4F90-B864-BB1D6B807848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{980C1A1B-0033-4F90-B864-BB1D6B807848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{980C1A1B-0033-4F90-B864-BB1D6B807848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5387507D-F0E1-446B-B247-0F3FC2067598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5387507D-F0E1-446B-B247-0F3FC2067598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5387507D-F0E1-446B-B247-0F3FC2067598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5387507D-F0E1-446B-B247-0F3FC2067598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B513701-5317-4DBC-9FBF-FBE001A8BB3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B513701-5317-4DBC-9FBF-FBE001A8BB3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B513701-5317-4DBC-9FBF-FBE001A8BB3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B513701-5317-4DBC-9FBF-FBE001A8BB3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
