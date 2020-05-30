@@ -12,3 +12,14 @@ Trang quản trị:
 + Hiển thị rõ ràng từng danh mục quản lý.
 + Thêm xóa sửa cập nhật.
 + Đăng nhập(Bắt buộc login mới vào được trang quản trị - Tài khoản: admin, Mật khẩu: 1234).
+
+Công nghệ sử dụng:
+- ASP.NET Framework 4.8
+- EntityFramework 6
+- c#
+- Ajax Jquery
+- SQL Server
+
+Tài liệu tham khảo:
+- Microsoft Docs.
+- Stack Overflow
